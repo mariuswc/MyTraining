@@ -1,7 +1,7 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("jvm") version "2.2.20"
+    kotlin("jvm") version "2.4.20"
+    kotlin("plugin.spring") version "2.4.20"
+    id("org.springframework.boot") version "4.2.0-M1"
 }
 
 group = "org.example"
@@ -9,26 +9,33 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    google()
 }
 
-version = "4.2.0-M1"
-
 dependencies {
+    implementation(
+        platform("org.springframework.boot:spring-boot-dependencies:4.2.0-M1")
+    )
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-webclient")
+   // implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    implementation(kotlin("reflect"))
+    implementation("com.google.api-client:google-api-client:2.9.0")
+
     testImplementation(kotlin("test"))
-    implementation("org.springframework.boot:spring-boot-starter-web:$version")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$version")
-    implementation("org.springframework.boot:spring-boot-starter-webflux:$version")
-
-
 }
 
 tasks.test {
     useJUnitPlatform()
 }
+
 kotlin {
     jvmToolchain(24)
-}
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.compilerOptions {
-    freeCompilerArgs.set(listOf("-Xannotation-default-target=param-property"))
+
+    compilerOptions {
+        freeCompilerArgs.add("-Xannotation-default-target=param-property")
+    }
 }

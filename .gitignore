@@ -20,6 +20,7 @@ out/
 
 ### Kotlin ###
 .kotlin
+google-sheets-client-secret.json
 
 ### Eclipse ###
 .apt_generated

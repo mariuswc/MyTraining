@@ -1,0 +1,23 @@
+package org.example.controller
+
+import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.GetMapping
+
+@Controller
+
+class SpreadSheetController {
+
+@GetMapping("/spreadsheet{spreadsheetId}")
+    fun getSpreadSheet(){
+
+
+    }
+@GetMapping("/spreadsheets")
+    fun listAllSpreadSheetFromDrive(){
+
+    }
+
+    fun deleteSpreadSheet(){
+
+    }
+}
