@@ -3,6 +3,7 @@ package org.example.clients
 import org.example.dto.response.SpreadSheetResponse
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.bodyToMono
 
 
 class GoogleSheetClient(
@@ -13,9 +14,9 @@ class GoogleSheetClient(
         webClient.get()
             .uri("/v4/spreadsheets/${spreadsheetId}/values/${range}")
             .retrieve()
-            .bodyToMono(SpreadSheetResponse::class.java)
+            .bodyToMono<SpreadSheetResponse>()
             .onErrorMap { error ->
-                RuntimeException("Kunne ikke hente regnearket", error)
+                RuntimeException("Could not retrieve spreadsheet", error)
             }}
 
 

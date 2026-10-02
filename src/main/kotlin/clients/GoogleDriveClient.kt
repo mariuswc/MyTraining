@@ -4,8 +4,9 @@ import org.example.dto.response.SpreadSheetResponse
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.bodyToMono
 
-    class GoogleDriveClient(
+class GoogleDriveClient(
         @Qualifier("googleDriveConfig")
         val webClient: WebClient
     ) {
@@ -19,9 +20,8 @@ import org.springframework.web.reactive.function.client.WebClient
                 }
                 .header("TODO")
                 .retrieve()
-                .bodyToMono(SpreadSheetResponse::class.java)
-                .onErrorMap { error -> throw error }
-
+                .bodyToMono<SpreadSheetResponse>()
+                .onErrorMap { error -> throw RuntimeException("Could not retrieve the users drive", error) }
     }
 
 
