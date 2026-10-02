@@ -1,19 +1,40 @@
 package org.example.controller
 
-import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.GetMapping
+import com.google.api.client.auth.oauth2.Credential
+import jakarta.servlet.http.HttpSession
+import org.example.dto.response.GoogleDriveResponse
+import org.springframework.http.HttpStatus
+import org.example.dto.response.SpreadSheetResponse
+import org.example.service.GoogleSpreadSheetService
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.server.ResponseStatusException
+import reactor.core.publisher.Mono
 
-@Controller
+@RestController
+class SpreadSheetController(
+    private val spreadSheet: GoogleSpreadSheetService
+) {
 
-class SpreadSheetController {
+@GetMapping("/spreadsheets/{spreadsheetId}")
+    fun getSpreadSheet(
+    request: HttpSession,
+    @PathVariable spreadsheetId: String,
+    @RequestParam range: String) : Mono<SpreadSheetResponse> {
 
-@GetMapping("/spreadsheet{spreadsheetId}")
-    fun getSpreadSheet(){
+        val credential = request.getAttribute("googleCredential") as Credential?
+            ?: throw ResponseStatusException(HttpStatus.FORBIDDEN, "Please sign in with google first")
 
-
+        return spreadSheet.getSpreadSheet(credential, spreadsheetId, range)
     }
+
 @GetMapping("/spreadsheets")
-    fun listAllSpreadSheetFromDrive(){
+    fun listAllSpreadSheetFromDrive(request: HttpSession): Mono<GoogleDriveResponse>{
+
+    val credential = request.getAttribute("googleCredential") as Credential?
+        ?: throw ResponseStatusException(HttpStatus.FORBIDDEN, "Please sign in with google first")
+
+        return spreadSheet.listSheetsFromDrive(credential)
+
 
     }
 
