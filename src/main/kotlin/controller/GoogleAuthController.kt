@@ -45,6 +45,6 @@ class GoogleAuthController(
         val credential = authService.exchangeCodeForCredential(code)
         session.setAttribute("googleCredential", credential)
 
-        return "Connection successful"
+        return "Authorized with Google"
     }
 }

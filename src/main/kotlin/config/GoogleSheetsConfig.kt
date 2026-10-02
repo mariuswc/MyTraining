@@ -6,18 +6,11 @@ import org.springframework.web.reactive.function.client.WebClient
 
 
 @Configuration
-class GoogleConfig {
+class GoogleSheetsConfig {
 
     @Bean
     fun googleSheetConfig(builder: WebClient.Builder) =
         builder
             .baseUrl("https://sheets.googleapis.com")
             .build()
-
-    @Bean
-    fun googleDriveConfig(builder: WebClient.Builder) =
-        builder
-            .baseUrl("https://www.googleapis.com/drive/v3/files")
-            .build()
-
 }
