@@ -18,7 +18,7 @@ class GoogleDriveClient(
                 .uri { uriBuilder -> uriBuilder
                     .path("/drive/v3/files")
                     .queryParam("q","mimeType = 'application/vnd.google-apps.spreadsheet'")
-                    .queryParam("supportAllDrives", true)
+                    .queryParam("supportsAllDrives", true)
                     .build()
                 }
                 .headers{  headers -> headers.setBearerAuth(credential.accessToken)}

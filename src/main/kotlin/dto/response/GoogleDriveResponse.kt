@@ -1,7 +1,5 @@
 package org.example.dto.response
 
-import org.apache.logging.log4j.util.StringMap
-
 data class GoogleDriveResponse(
     val files: List<File>,
     val nextPageToken: String?,
@@ -12,5 +10,6 @@ data class GoogleDriveResponse(
 data class File(
     val kind: String,
     val driveId: String? = null,
+    val id: String,
     val name: String
 )

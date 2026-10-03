@@ -5,10 +5,8 @@ import org.example.clients.GoogleDriveClient
 import org.example.clients.GoogleSheetClient
 import org.example.dto.response.GoogleDriveResponse
 import org.example.dto.response.SpreadSheetResponse
-import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
-import java.util.logging.Logger
 
 @Service
 class GoogleSpreadSheetService(
@@ -16,8 +14,13 @@ class GoogleSpreadSheetService(
     val googleSpreadSheet: GoogleSheetClient
 ) {
 
-    fun getSpreadSheet(credential: Credential, id: String, range: String): Mono<SpreadSheetResponse> =
-        googleSpreadSheet.getSheet(credential,id, range)
+    fun getSpreadSheet(credential: Credential, id: String, sheetName: String): Mono<SpreadSheetResponse> {
+
+        val range = "'${sheetName}'!A19:AE83"
+
+        return googleSpreadSheet.getSheet(credential,id, range)
+
+    }
 
 
     fun listSheetsFromDrive(credential: Credential): Mono<GoogleDriveResponse> =
