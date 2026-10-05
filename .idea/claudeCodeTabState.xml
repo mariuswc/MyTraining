@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ClaudeCodeTabState">
+    <option name="tabNames">
+      <map>
+        <entry key="0" value="MyAI" />
+      </map>
+    </option>
     <option name="tabSessions">
       <map>
         <entry key="0">
@@ -8,9 +13,9 @@
             <TabSessionState>
               <option name="projectPath" value="C:\Users\mariu\Documents\WorkOutApp\WorkOutApp" />
               <option name="provider" value="codex" />
-              <option name="sessionId" value="01a0f6b5-4a44-7361-b76a-bee71c6cefdb" />
+              <option name="sessionId" value="01a10b9c-78df-7072-8585-f0787b5675cd" />
               <option name="cwd" value="C:\Users\mariu\Documents\WorkOutApp\WorkOutApp" />
-              <option name="model" value="gpt-6-astra" />
+              <option name="model" value="gpt-5.6-terra" />
               <option name="permissionMode" value="default" />
             </TabSessionState>
           </value>

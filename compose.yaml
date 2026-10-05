@@ -1,0 +1,13 @@
+# Use postgres/example user/password credentials
+
+services:
+  postgres:
+    image: 'postgres'
+    environment:
+      - 'POSTGRES_USER=myuser'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_DB=MyWorkoutApp'
+    ports:
+      - '5432:5432'
+    labels:
+      org.springframework.boot.jdbc.parameters: 'ssl=true&sslmode=require'
