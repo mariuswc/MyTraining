@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.4.20"
     kotlin("plugin.spring") version "2.4.20"
+    kotlin("plugin.jpa") version "2.4.20"
     id("org.springframework.boot") version "4.2.0-M1"
 }
 
@@ -32,6 +33,12 @@ dependencies {
     testImplementation("org.testcontainers:testcontainers-postgresql")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     runtimeOnly("org.postgresql:postgresql")
+}
+
+allOpen {
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
 }
 
 tasks.test {
