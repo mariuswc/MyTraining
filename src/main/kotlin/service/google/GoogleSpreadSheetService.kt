@@ -1,4 +1,4 @@
-package org.example.service
+package org.example.service.google
 
 import com.google.api.client.auth.oauth2.Credential
 import org.example.clients.GoogleDriveClient

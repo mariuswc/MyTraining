@@ -1,10 +1,9 @@
-package org.example.service
+package org.example.service.google
 
 import com.google.api.client.auth.oauth2.Credential
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
-
 
 @Service
 class GoogleAuthService(
